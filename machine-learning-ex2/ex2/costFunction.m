@@ -21,6 +21,13 @@ grad = zeros(size(theta));
 %
 
 
+% hypothesis
+h =  sigmoid(X*theta);
+
+% verctorized J(theta)
+J =   ( -y'*log(h) - (1-y)'*log(1-h) )/ m  
+grad = (sigmoid(X*theta) - y)'*X/m;
+
 
 
 
