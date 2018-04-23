@@ -24,6 +24,20 @@ p = zeros(size(X, 1), 1);
 
 
 
+X = [ones(m,1) X];
+
+% Layer two
+a2 = sigmoid(X*Theta1');
+
+a2 = [ones(m,1)  a2];
+
+% Layer three
+a3 = sigmoid(a2*Theta2');
+
+% 返回每一行的最大值作为返回向量的每一个元素
+[nouse , p] = max(a3 , [] , 2);
+
+
 
 
 
