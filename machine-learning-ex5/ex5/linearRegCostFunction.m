@@ -19,11 +19,14 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+predictions = X*theta;
+theta(1) = 0;
+errors = (predictions - y).^2;
+J = 1 / (2 * m) * ( sum(errors) + sum(lambda*theta.^2 ) );
 
 
-
-
-
+%gradient
+grad = 1/m*( X'*(predictions -y) + lambda*theta );
 
 
 
