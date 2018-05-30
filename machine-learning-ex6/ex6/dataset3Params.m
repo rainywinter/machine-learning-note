@@ -24,11 +24,22 @@ sigma = 0.3;
 %
 
 
+range = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
 
+optimaPrediction = 10000;
 
-
-
-
+for iC = range 
+  for iSigma = range 
+    model = svmTrain(X , y , iC , @(x1,x2) gaussianKernel(x1,x2,iSigma) ) ;
+    predictions = svmPredict(model , Xval);
+    prediction = mean(double(predictions ~= yval));
+    if prediction < optimaPrediction;
+      optimaPrediction = prediction;
+      C = iC;
+      sigma = iSigma;
+    end
+  end
+end
 % =========================================================================
 
 end
